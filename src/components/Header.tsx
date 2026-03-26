@@ -5,6 +5,7 @@ const navItems = [
   { label: "Úvod", href: "#uvod" },
   { label: "Vedení a učitelé", href: "#tym" },
   { label: "Výuka", href: "#vyuka" },
+  { label: "Vozový park", href: "#vozovy-park" },
   { label: "Ceník", href: "#cenik" },
   { label: "Další služby", href: "#sluzby" },
   { label: "Opakování a opravné zkoušky", href: "#opravy" },
