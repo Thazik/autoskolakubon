@@ -38,7 +38,7 @@ const ContactSection = () => {
 
   const handleResSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const typeLabel = resForm.type === "drive" ? "Jízda" : resForm.type === "theory" ? "Teorie" : "Zkouška";
+    const typeLabel = "Kondiční jízda";
     const subject = encodeURIComponent(`Rezervace – ${typeLabel} – ${resForm.name}`);
     const body = encodeURIComponent(
       `Jméno: ${resForm.name}\nEmail: ${resForm.email}\nTelefon: ${resForm.phone}\nDatum: ${resForm.date}\nČas: ${resForm.time}\nTyp: ${typeLabel}`
