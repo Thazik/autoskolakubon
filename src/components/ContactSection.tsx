@@ -229,9 +229,7 @@ const ContactSection = () => {
                 <div>
                   <label className={labelClass}>Typ</label>
                   <select className={inputClass} value={resForm.type} onChange={e => setResForm(p => ({...p, type: e.target.value}))}>
-                    <option value="drive">Jízda</option>
-                    <option value="theory">Teorie</option>
-                    <option value="exam">Zkouška</option>
+                    <option value="kondic">Kondiční jízda</option>
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
