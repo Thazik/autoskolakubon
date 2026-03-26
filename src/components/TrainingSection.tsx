@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { BookOpen, Car, Globe } from "lucide-react";
+import ucebnaImg from "@/assets/ucebna.jpg";
 
 const TrainingSection = () => {
   return (
