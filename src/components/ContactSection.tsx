@@ -13,7 +13,7 @@ const ContactSection = () => {
   const [medSent, setMedSent] = useState(false);
 
   // Rezervace
-  const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "drive" });
+  const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "kondic" });
   const [resSent, setResSent] = useState(false);
 
   const handleAppSubmit = (e: React.FormEvent) => {
