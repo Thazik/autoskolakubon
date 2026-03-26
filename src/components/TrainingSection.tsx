@@ -38,6 +38,9 @@ const TrainingSection = () => {
               <strong className="text-foreground">U Stromovky 9, Havířov</strong>{" "}
               (4. patro – budova má výtah)
             </p>
+            <div className="rounded-xl overflow-hidden border border-border mb-4">
+              <img src={ucebnaImg} alt="Budova učebny U Stromovky 9, Havířov" className="w-full h-48 object-cover" />
+            </div>
             <div className="rounded-xl overflow-hidden border border-border">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.5!2d18.4308!3d49.7797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e34b5e0c0001%3A0x0!2sU+Stromovky+9%2C+Hav%C3%AD%C5%99ov!5e0!3m2!1scs!2scz!4v1"
