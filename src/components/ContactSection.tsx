@@ -13,7 +13,7 @@ const ContactSection = () => {
   const [medSent, setMedSent] = useState(false);
 
   // Rezervace
-  const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "drive" });
+  const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "kondic" });
   const [resSent, setResSent] = useState(false);
 
   const handleAppSubmit = (e: React.FormEvent) => {
@@ -38,7 +38,7 @@ const ContactSection = () => {
 
   const handleResSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const typeLabel = resForm.type === "drive" ? "Jízda" : resForm.type === "theory" ? "Teorie" : "Zkouška";
+    const typeLabel = "Kondiční jízda";
     const subject = encodeURIComponent(`Rezervace – ${typeLabel} – ${resForm.name}`);
     const body = encodeURIComponent(
       `Jméno: ${resForm.name}\nEmail: ${resForm.email}\nTelefon: ${resForm.phone}\nDatum: ${resForm.date}\nČas: ${resForm.time}\nTyp: ${typeLabel}`
@@ -229,9 +229,7 @@ const ContactSection = () => {
                 <div>
                   <label className={labelClass}>Typ</label>
                   <select className={inputClass} value={resForm.type} onChange={e => setResForm(p => ({...p, type: e.target.value}))}>
-                    <option value="drive">Jízda</option>
-                    <option value="theory">Teorie</option>
-                    <option value="exam">Zkouška</option>
+                    <option value="kondic">Kondiční jízda</option>
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-3">

@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
-import car1 from "@/assets/car1.jpg";
 import car2 from "@/assets/car2.jpg";
 import car3 from "@/assets/car3.jpg";
 
 const cars = [
-  { src: car1, alt: "Autoškola Kuboň – vozový park, oba vozy" },
   { src: car2, alt: "Autoškola Kuboň – Škoda Fabia" },
   { src: car3, alt: "Autoškola Kuboň – Škoda Karoq" },
 ];
@@ -28,7 +26,7 @@ const FleetSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {cars.map((car, i) => (
             <motion.div
               key={i}
