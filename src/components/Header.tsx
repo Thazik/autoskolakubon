@@ -38,13 +38,13 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Bottom row: nav centered */}
-      <nav className="hidden lg:flex items-center justify-center gap-1 pb-2">
+      {/* Bottom row: nav centered, wrapping allowed */}
+      <nav className="hidden lg:flex items-center justify-center flex-wrap gap-x-1 gap-y-0.5 pb-2 px-4">
         {navItems.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="px-3 py-1 text-[13px] font-medium tracking-wide uppercase text-hero-foreground/60 hover:text-primary transition-colors rounded-md"
+            className="px-2.5 py-1 text-[12px] font-medium tracking-wide uppercase text-hero-foreground/60 hover:text-primary transition-colors rounded-md whitespace-nowrap"
           >
             {item.label}
           </a>
