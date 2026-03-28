@@ -66,6 +66,25 @@ const ContactSection = () => {
           </h2>
         </motion.div>
 
+        {/* Otevírací doba */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="max-w-2xl mx-auto mb-14 bg-card rounded-xl p-8 border border-blue-subtle shadow-blue text-center"
+        >
+          <h3 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-2">Otevírací doba</h3>
+          <p className="text-muted-foreground text-sm mb-6">
+            Navštivte nás v naší kanceláři na adrese U Stromovky 9, Havířov. Mimo uvedené hodiny je možná domluva telefonicky.
+          </p>
+          <img
+            src="/images/oteviraci-doba.jpeg"
+            alt="Otevírací doba autoškoly Kuboň"
+            className="mx-auto rounded-lg max-w-md w-full"
+          />
+        </motion.div>
+
         {/* Kontaktní info */}
         <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
           {[
