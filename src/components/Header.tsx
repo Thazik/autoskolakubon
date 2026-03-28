@@ -9,6 +9,7 @@ const navItems = [
   { label: "Vozový park", href: "#vozovy-park" },
   { label: "Ceník", href: "#cenik" },
   { label: "Další služby", href: "#sluzby" },
+  { label: "Dárkový poukaz", href: "#darkovy-poukaz" },
   { label: "Opakování a opravné zkoušky", href: "#opravy" },
   { label: "Kontakt", href: "#kontakt" },
 ];
