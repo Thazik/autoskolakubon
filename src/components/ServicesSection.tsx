@@ -42,6 +42,36 @@ const ServicesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Dárkový poukaz */}
+        <motion.div
+          id="darkovy-poukaz"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mx-auto mt-16 bg-card rounded-xl border border-blue-subtle shadow-blue p-8 text-center"
+        >
+          <h3 className="font-heading font-bold text-2xl md:text-3xl text-foreground mb-4">
+            Dárkový <span className="text-gradient">poukaz</span>
+          </h3>
+          <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
+            Darujte svým blízkým řidičský průkaz! Dárkový poukaz na kurz autoškoly je skvělý dárek k narozeninám, Vánocům nebo jiné příležitosti. Poukaz je platný 12 měsíců od zakoupení.
+          </p>
+          <img
+            src="/documents/darkovy-poukaz.png"
+            alt="Dárkový poukaz Autoškola Kuboň"
+            className="w-full max-w-md mx-auto rounded-lg border border-blue-subtle mb-6"
+          />
+          <a
+            href="/documents/darkovy-poukaz.png"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-heading font-bold text-sm rounded-lg shadow-blue hover:brightness-110 transition-all"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Stáhnout dárkový poukaz
+          </a>
+        </motion.div>
       </div>
     </section>
   );
