@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Car, GraduationCap, Zap, Globe, Sparkles } from "lucide-react";
+import { Car, GraduationCap, Zap, Globe, Sparkles, ArrowRight } from "lucide-react";
 
 const plans = [
   {
@@ -43,15 +43,16 @@ const plans = [
 
 const PricingSection = () => {
   return (
-    <section id="cenik" className="py-20 md:py-28">
+    <section id="cenik" className="py-24 md:py-32 section-decoration">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
+          <span className="badge-primary mb-4 inline-block">Transparentní ceny</span>
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground">
             <span className="text-gradient">Ceník</span>
           </h2>
@@ -65,48 +66,65 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className={`relative rounded-xl p-8 border transition-shadow hover:shadow-blue ${
+              className={`relative rounded-2xl p-8 border card-hover overflow-hidden ${
                 plan.highlight
-                  ? "bg-hero border-primary shadow-blue"
-                  : "bg-card border-blue-subtle"
+                  ? "bg-hero border-primary/30 shadow-blue-lg"
+                  : "bg-card border-blue-subtle gradient-border"
               }`}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  plan.highlight ? "bg-primary/20" : "bg-primary/10"
-                }`}>
-                  <plan.icon className={`w-5 h-5 ${plan.highlight ? "text-blue-light" : "text-primary"}`} />
+              {plan.highlight && (
+                <>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/15 rounded-full blur-[50px] pointer-events-none" />
+                  <div className="absolute -top-1 left-4 right-4">
+                    <div className="h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
+                  </div>
+                </>
+              )}
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                    plan.highlight ? "bg-primary/20 ring-1 ring-primary/30" : "bg-gradient-to-br from-primary/15 to-primary/5 ring-1 ring-primary/10"
+                  }`}>
+                    <plan.icon className={`w-5 h-5 ${plan.highlight ? "text-blue-light" : "text-primary"}`} />
+                  </div>
+                  <h3 className={`font-heading font-bold text-lg ${
+                    plan.highlight ? "text-hero-foreground" : "text-foreground"
+                  }`}>
+                    {plan.title}
+                  </h3>
                 </div>
-                <h3 className={`font-heading font-bold text-lg ${
-                  plan.highlight ? "text-hero-foreground" : "text-foreground"
+                {plan.subtitle && (
+                  <p className={`text-xs font-medium uppercase tracking-wider mb-3 ${
+                    plan.highlight ? "text-blue-light" : "text-primary"
+                  }`}>
+                    {plan.subtitle}
+                  </p>
+                )}
+                <p className={`text-sm leading-relaxed mb-6 ${
+                  plan.highlight ? "text-hero-foreground/70" : "text-muted-foreground"
                 }`}>
-                  {plan.title}
-                </h3>
-              </div>
-              {plan.subtitle && (
-                <p className={`text-xs font-medium uppercase tracking-wider mb-3 ${
-                  plan.highlight ? "text-blue-light" : "text-primary"
-                }`}>
-                  {plan.subtitle}
+                  {plan.description}
                 </p>
-              )}
-              <p className={`text-sm leading-relaxed mb-6 ${
-                plan.highlight ? "text-hero-foreground/70" : "text-muted-foreground"
-              }`}>
-                {plan.description}
-              </p>
-              <div className={`font-heading font-black text-3xl ${
-                plan.highlight ? "text-hero-foreground" : "text-foreground"
-              }`}>
-                {plan.price} <span className="text-base font-medium">Kč</span>
+                <div className="flex items-end justify-between">
+                  <div className={`font-heading font-black text-3xl ${
+                    plan.highlight ? "text-hero-foreground" : "text-foreground"
+                  }`}>
+                    {plan.price} <span className="text-base font-medium">Kč</span>
+                  </div>
+                  <a href="#kontakt" className={`p-2 rounded-lg transition-colors ${
+                    plan.highlight ? "bg-primary/20 hover:bg-primary/30 text-primary-foreground" : "bg-primary/10 hover:bg-primary/20 text-primary"
+                  }`}>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+                {plan.note && (
+                  <p className={`mt-3 text-xs ${
+                    plan.highlight ? "text-hero-foreground/50" : "text-muted-foreground"
+                  }`}>
+                    {plan.note}
+                  </p>
+                )}
               </div>
-              {plan.note && (
-                <p className={`mt-3 text-xs ${
-                  plan.highlight ? "text-hero-foreground/60" : "text-muted-foreground"
-                }`}>
-                  {plan.note}
-                </p>
-              )}
             </motion.div>
           ))}
         </div>
