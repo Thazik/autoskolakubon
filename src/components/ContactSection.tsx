@@ -141,6 +141,17 @@ const ContactSection = () => {
               <Send className="w-5 h-5 text-primary" />
               <h3 className="font-heading font-bold text-lg text-foreground">Online přihláška</h3>
             </div>
+
+            {/* Stáhnout žádost o přijetí */}
+            <a
+              href="/documents/zadost-o-prijeti.pdf"
+              download
+              className="flex items-center gap-2 mb-6 px-4 py-3 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Stáhnout žádost o přijetí (PDF)
+            </a>
+
             {appSent ? (
               <p className="text-primary font-medium">E-mailový klient byl otevřen. Odešlete prosím e-mail.</p>
             ) : (
