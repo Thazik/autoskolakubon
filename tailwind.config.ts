@@ -59,6 +59,7 @@ export default {
         "blue-glow": "hsl(var(--blue-glow))",
         "blue-light": "hsl(var(--blue-light))",
         "blue-dark": "hsl(var(--blue-dark))",
+        "blue-950": "hsl(var(--blue-950))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

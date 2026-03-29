@@ -1,18 +1,19 @@
 import { motion } from "framer-motion";
-import { BookOpen, Car, Globe } from "lucide-react";
+import { BookOpen, Car, Globe, MapPin, CheckCircle2 } from "lucide-react";
 import ucebnaImg from "@/assets/ucebna.jpg";
 
 const TrainingSection = () => {
   return (
-    <section id="vyuka" className="py-20 md:py-28 bg-section-alt">
+    <section id="vyuka" className="py-24 md:py-32 bg-section-alt section-decoration">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
+          <span className="badge-primary mb-4 inline-block">Jak to funguje</span>
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground">
             <span className="text-gradient">Výuka</span>
           </h2>
@@ -25,23 +26,25 @@ const TrainingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue card-hover gradient-border"
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
                 <BookOpen className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-heading font-bold text-xl text-foreground">Teoretická výuka</h3>
             </div>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Teoretická výuka probíhá v učebně na adrese:{" "}
-              <strong className="text-foreground">U Stromovky 9, Havířov</strong>{" "}
-              (4. patro – budova má výtah)
-            </p>
-            <div className="rounded-xl overflow-hidden border border-border mb-4">
-              <img src={ucebnaImg} alt="Budova učebny U Stromovky 9, Havířov" className="w-full h-48 object-cover" />
+            <div className="flex items-start gap-2 mb-4 p-3 rounded-xl bg-section-alt border border-border/50">
+              <MapPin className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                <strong className="text-foreground">U Stromovky 9, Havířov</strong>{" "}
+                (4. patro – budova má výtah)
+              </p>
             </div>
-            <div className="rounded-xl overflow-hidden border border-border">
+            <div className="rounded-xl overflow-hidden border border-border/50 mb-4">
+              <img src={ucebnaImg} alt="Budova učebny U Stromovky 9, Havířov" className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="rounded-xl overflow-hidden border border-border/50">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.5!2d18.4308!3d49.7797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e34b5e0c0001%3A0x0!2sU+Stromovky+9%2C+Hav%C3%AD%C5%99ov!5e0!3m2!1scs!2scz!4v1"
                 width="100%"
@@ -61,26 +64,40 @@ const TrainingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue card-hover gradient-border"
           >
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
                 <Car className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-heading font-bold text-xl text-foreground">Praktický výcvik</h3>
             </div>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Praktický výcvik začíná na cvičišti určeném pouze pro naši autoškolu, kde se naučíte základní ovládání vozidla. Následně pokračuje výcvik v běžném provozu.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              <strong className="text-foreground">Jízdy probíhají ve městech:</strong> Havířov, Karviná, Orlová, Český Těšín, Ostrava
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Začátek jízd je možné domluvit na místě podle individuální dohody.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Závěrečné zkoušky</strong> probíhají v Havířově.
-            </p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Praktický výcvik začíná na cvičišti určeném pouze pro naši autoškolu, kde se naučíte základní ovládání vozidla. Následně pokračuje výcvik v běžném provozu.
+                </p>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  <strong className="text-foreground">Jízdy probíhají ve městech:</strong> Havířov, Karviná, Orlová, Český Těšín, Ostrava
+                </p>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  Začátek jízd je možné domluvit na místě podle individuální dohody.
+                </p>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-primary mt-1 shrink-0" />
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  <strong className="text-foreground">Závěrečné zkoušky</strong> probíhají v Havířově.
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -90,10 +107,10 @@ const TrainingSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+          className="max-w-3xl mx-auto bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue card-hover gradient-border"
         >
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
               <Globe className="w-6 h-6 text-primary" />
             </div>
             <h3 className="font-heading font-bold text-xl text-foreground">Výuka v anglickém jazyce</h3>

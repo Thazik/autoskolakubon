@@ -1,18 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Building2, Send, Upload, CalendarDays } from "lucide-react";
+import { Mail, Phone, Building2, Send, Upload, CalendarDays, Download } from "lucide-react";
 
 const ContactSection = () => {
-  // Přihláška
   const [appForm, setAppForm] = useState({ name: "", email: "", phone: "", course: "B", message: "" });
   const [appSent, setAppSent] = useState(false);
-
-  // Lékařské potvrzení
   const [medFile, setMedFile] = useState<File | null>(null);
   const [medName, setMedName] = useState("");
   const [medSent, setMedSent] = useState(false);
-
-  // Rezervace
   const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "kondic" });
   const [resSent, setResSent] = useState(false);
 
@@ -47,20 +42,21 @@ const ContactSection = () => {
     setResSent(true);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg bg-section-alt border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 font-body text-sm";
+  const inputClass = "w-full px-4 py-3 rounded-xl bg-section-alt border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/30 font-body text-sm transition-all duration-200";
   const labelClass = "block text-sm font-medium text-foreground mb-1.5";
-  const btnClass = "w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-heading font-bold text-sm rounded-lg shadow-blue hover:brightness-110 transition-all disabled:opacity-50";
+  const btnClass = "w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-heading font-bold text-sm rounded-xl shadow-blue hover:brightness-110 hover:scale-[1.01] transition-all duration-200 disabled:opacity-50";
 
   return (
-    <section id="kontakt" className="py-20 md:py-28 bg-section-alt">
+    <section id="kontakt" className="py-24 md:py-32 bg-section-alt section-decoration">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
+          <span className="badge-primary mb-4 inline-block">Ozvěte se nám</span>
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground">
             <span className="text-gradient">Kontakt</span>
           </h2>
@@ -72,7 +68,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="max-w-2xl mx-auto mb-14 bg-card rounded-xl p-8 border border-blue-subtle shadow-blue text-center"
+          className="max-w-2xl mx-auto mb-14 bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue gradient-border text-center"
         >
           <h3 className="font-heading font-bold text-xl md:text-2xl text-foreground mb-2">Otevírací doba</h3>
           <p className="text-muted-foreground text-sm mb-6">
@@ -81,7 +77,7 @@ const ContactSection = () => {
           <img
             src="/images/oteviraci-doba.png"
             alt="Otevírací doba autoškoly Kuboň"
-            className="mx-auto rounded-lg max-w-md w-full"
+            className="mx-auto rounded-xl max-w-md w-full"
           />
         </motion.div>
 
@@ -98,9 +94,11 @@ const ContactSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="text-center p-6 bg-card rounded-xl border border-blue-subtle"
+              className="text-center p-6 bg-card rounded-2xl border border-blue-subtle card-hover gradient-border"
             >
-              <c.icon className="w-6 h-6 text-primary mx-auto mb-3" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center mx-auto mb-3 ring-1 ring-primary/10">
+                <c.icon className="w-5 h-5 text-primary" />
+              </div>
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{c.label}</p>
               {c.href ? (
                 <a href={c.href} className="font-medium text-foreground hover:text-primary transition-colors text-sm">
@@ -114,7 +112,7 @@ const ContactSection = () => {
         </div>
 
         {/* Mapa */}
-        <div className="max-w-3xl mx-auto mb-16 rounded-xl overflow-hidden border border-blue-subtle shadow-blue">
+        <div className="max-w-3xl mx-auto mb-16 rounded-2xl overflow-hidden border border-blue-subtle shadow-blue">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.5!2d18.4308!3d49.7797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e34b5e0c0001%3A0x0!2sU+Stromovky+9%2C+Hav%C3%AD%C5%99ov!5e0!3m2!1scs!2scz!4v1"
             width="100%"
@@ -135,25 +133,28 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue gradient-border"
           >
             <div className="flex items-center gap-3 mb-6">
-              <Send className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
+                <Send className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-heading font-bold text-lg text-foreground">Online přihláška</h3>
             </div>
 
-            {/* Stáhnout žádost o přijetí */}
             <a
               href="/documents/zadost-o-prijeti.pdf"
               download
-              className="flex items-center gap-2 mb-6 px-4 py-3 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 mb-6 px-4 py-3 rounded-xl bg-primary/5 border border-primary/15 text-primary hover:bg-primary/10 transition-all duration-200 text-sm font-medium"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <Download className="w-4 h-4" />
               Stáhnout žádost o přijetí (PDF)
             </a>
 
             {appSent ? (
-              <p className="text-primary font-medium">E-mailový klient byl otevřen. Odešlete prosím e-mail.</p>
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
+                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Odešlete prosím e-mail.</p>
+              </div>
             ) : (
               <form onSubmit={handleAppSubmit} className="space-y-4">
                 <div>
@@ -195,25 +196,28 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue gradient-border"
           >
             <div className="flex items-center gap-3 mb-6">
-              <Upload className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
+                <Upload className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-heading font-bold text-lg text-foreground">Lékařské potvrzení</h3>
             </div>
 
-            {/* Stáhnout formulář */}
             <a
               href="/documents/posudek-o-zdravotni-zpusobilosti.pdf"
               download
-              className="flex items-center gap-2 mb-6 px-4 py-3 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 mb-6 px-4 py-3 rounded-xl bg-primary/5 border border-primary/15 text-primary hover:bg-primary/10 transition-all duration-200 text-sm font-medium"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <Download className="w-4 h-4" />
               Stáhnout formulář posudku
             </a>
 
             {medSent ? (
-              <p className="text-primary font-medium">E-mailový klient byl otevřen. Připojte prosím soubor a odešlete.</p>
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
+                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Připojte prosím soubor a odešlete.</p>
+              </div>
             ) : (
               <form onSubmit={handleMedSubmit} className="space-y-4">
                 <div>
@@ -228,7 +232,7 @@ const ContactSection = () => {
                     className={inputClass}
                     onChange={e => setMedFile(e.target.files?.[0] || null)}
                   />
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className="text-xs text-muted-foreground mt-1.5">
                     Soubor bude nutné přiložit ručně v otevřeném e-mailovém klientu.
                   </p>
                 </div>
@@ -245,14 +249,18 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-card rounded-xl p-8 border border-blue-subtle shadow-blue"
+            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue gradient-border"
           >
             <div className="flex items-center gap-3 mb-6">
-              <CalendarDays className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
+                <CalendarDays className="w-5 h-5 text-primary" />
+              </div>
               <h3 className="font-heading font-bold text-lg text-foreground">Rezervační systém</h3>
             </div>
             {resSent ? (
-              <p className="text-primary font-medium">E-mailový klient byl otevřen. Odešlete prosím e-mail k potvrzení rezervace.</p>
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
+                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Odešlete prosím e-mail k potvrzení rezervace.</p>
+              </div>
             ) : (
               <form onSubmit={handleResSubmit} className="space-y-4">
                 <div>
