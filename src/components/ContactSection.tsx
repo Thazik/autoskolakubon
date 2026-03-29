@@ -79,7 +79,7 @@ const ContactSection = () => {
             Navštivte nás v naší kanceláři na adrese U Stromovky 9, Havířov. Mimo uvedené hodiny je možná domluva telefonicky.
           </p>
           <img
-            src="/images/oteviraci-doba.jpeg"
+            src="/images/oteviraci-doba.png"
             alt="Otevírací doba autoškoly Kuboň"
             className="mx-auto rounded-lg max-w-md w-full"
           />
