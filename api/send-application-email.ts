@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { getPrihlaskaTemplate } from './templates';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -38,14 +39,7 @@ export default async function handler(req: any, res: any) {
       from: `Autoškola Kubáň <${senderEmail}>`,
       to: email,
       subject: `Potvrzení o přijetí přihlášky - Autoškola Kubáň`,
-      html: `
-        <h1>Dobrý den, ${name},</h1>
-        <p>děkujeme za Vaši přihlášku do kurzu ${course}.</p>
-        <p>Vaši žádost jsme v pořádku přijali a v co nejkratší době Vás budeme kontaktovat na telefonním čísle ${phone} pro domluvení dalších podrobností.</p>
-        <br />
-        <p>S pozdravem,</p>
-        <p>Tým Autoškola Kubáň</p>
-      `,
+      html: getPrihlaskaTemplate(name, email, phone, course),
     });
 
     return res.status(200).json({ success: true, data });

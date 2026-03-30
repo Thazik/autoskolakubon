@@ -272,9 +272,9 @@ const ContactSection = () => {
                   />
                   <span className="text-xs text-muted-foreground leading-relaxed">
                     Souhlasím se{" "}
-                    <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
+                    <a href="https://www.autoskolakubon.cz/ochrana-soukromi" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                       zpracováním osobních údajů
-                    </Link>.
+                    </a>.
                   </span>
                 </label>
                 {appError && <p className="text-red-500 text-sm">{appError}</p>}
@@ -346,9 +346,9 @@ const ContactSection = () => {
                   />
                   <span className="text-xs text-muted-foreground leading-relaxed">
                     Souhlasím se{" "}
-                    <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
+                    <a href="https://www.autoskolakubon.cz/ochrana-soukromi" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                       zpracováním osobních údajů
-                    </Link>.
+                    </a>.
                   </span>
                 </label>
                 {medError && <p className="text-red-500 text-sm">{medError}</p>}

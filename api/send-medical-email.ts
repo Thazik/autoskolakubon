@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { getLekarskeTemplate } from './templates';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -32,18 +33,12 @@ export default async function handler(req: any, res: any) {
     });
 
     // Potvrzení žákovi
+    const date = new Date().toLocaleDateString('cs-CZ');
     await resend.emails.send({
       from: `Autoškola Kubáň <${senderEmail}>`,
       to: email,
       subject: `Odeslání posudku o zdravotní způsobilosti - Autoškola Kubáň`,
-      html: `
-        <h1>Dobrý den, ${name},</h1>
-        <p>potvrzujeme, že Váš posudek o zdravotní způsobilosti (${file_name}) byl bezpečně odeslán a zaevidován.</p>
-        <p>Děkujeme.</p>
-        <br />
-        <p>S pozdravem,</p>
-        <p>Tým Autoškola Kubáň</p>
-      `,
+      html: getLekarskeTemplate(name, file_name, date),
     });
 
     return res.status(200).json({ success: true, data });
