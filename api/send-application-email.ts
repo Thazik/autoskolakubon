@@ -17,7 +17,7 @@ export default async function handler(req: any, res: any) {
 
     // 1. Odeslat notifikaci Adminovi / Autoškole
     const data = await resend.emails.send({
-      from: `Autoškola Kubáň <${senderEmail}>`,
+      from: `Autoškola Kuboň <${senderEmail}>`,
       to: adminEmail,
       replyTo: email,
       subject: `Nová přihláška do kurzu: ${name}`,
@@ -36,9 +36,9 @@ export default async function handler(req: any, res: any) {
     // 2. Volitelně: Odeslat potvrzení přímo zájemci
     // Lze zapnout, jakmile si odladíte šablonu
     await resend.emails.send({
-      from: `Autoškola Kubáň <${senderEmail}>`,
+      from: `Autoškola Kuboň <${senderEmail}>`,
       to: email,
-      subject: `Potvrzení o přijetí přihlášky - Autoškola Kubáň`,
+      subject: `Potvrzení o přijetí přihlášky - Autoškola Kuboň`,
       html: getPrihlaskaTemplate(name, email, phone, course),
     });
 

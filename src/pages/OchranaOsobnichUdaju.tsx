@@ -17,13 +17,13 @@ const OchranaOsobnichUdaju = () => (
 
       <div className="prose prose-sm max-w-none text-muted-foreground space-y-8">
         <p className="text-foreground/60 text-sm">
-          Platné a účinné od: {new Date().toLocaleDateString("cs-CZ")}
+          Platné a účinné od: 30. 3. 2026
         </p>
 
         <section>
           <h2 className="text-xl font-heading font-bold text-foreground mb-4">I. Základní ustanovení</h2>
           <p>
-            1. Správcem osobních údajů podle čl. 4 bod 7 nařízení Evropského parlamentu a Rady (EU) 2016/679 o ochraně fyzických osob v souvislosti se zpracováním osobních údajů a o volném pohybu těchto údajů (dále jen: „<strong>GDPR</strong>”) je podnikající fyzická osoba <strong>IČO: 24524948</strong> se sídlem U Stromovky 9, Havířov, podnikající pod názvem Autoškola Kubáň (dále jen: „<strong>správce</strong>“).
+            1. Správcem osobních údajů podle čl. 4 bod 7 nařízení Evropského parlamentu a Rady (EU) 2016/679 o ochraně fyzických osob v souvislosti se zpracováním osobních údajů a o volném pohybu těchto údajů (dále jen: „<strong>GDPR</strong>”) je podnikající fyzická osoba <strong>IČO: 24524948</strong> se sídlem U Stromovky 9, Havířov, podnikající pod názvem Autoškola Kuboň (dále jen: „<strong>správce</strong>“).
           </p>
           <p>
             2. Kontaktní údaje správce jsou:
@@ -31,7 +31,7 @@ const OchranaOsobnichUdaju = () => (
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li><strong>Adresa:</strong> U Stromovky 9, Havířov</li>
             <li><strong>Email:</strong> autoskolakubon@gmail.com</li>
-            <li><strong>Telefon:</strong> 774 277 865</li>
+            <li><strong>Telefon:</strong> +420 774 277 865</li>
           </ul>
           <p className="mt-4">
             3. Osobními údaji se rozumí veškeré informace o identifikované nebo identifikovatelné fyzické osobě.
@@ -41,7 +41,7 @@ const OchranaOsobnichUdaju = () => (
         <section>
           <h2 className="text-xl font-heading font-bold text-foreground mb-4">II. Zdroje a kategorie zpracovávaných osobních údajů</h2>
           <p>
-            Správce zpracovává osobní údaje, které jste mu poskytl/a nebo osobní údaje, které správce získal na základě plnění Vaší objednávky/přihlášky. Jedná se především o:
+            Správce zpracovává osobní údaje, které jste mu poskytl/a, nebo osobní údaje, které správce získal na základě plnění Vaší objednávky/přihlášky. Jedná se především o:
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>Jméno a příjmení,</li>
@@ -56,7 +56,7 @@ const OchranaOsobnichUdaju = () => (
           <p>Zákonným důvodem zpracování osobních údajů je:</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>plnění smlouvy (nástup do výcviku) mezi Vámi a správcem podle čl. 6 odst. 1 písm. b) GDPR,</li>
-            <li>plnění právních povinností správce (vyplývající ze zákona o získávání a zdokonalování odborné způsobilosti k řízení motorových vozidel) podle čl. 6 odst. 1 písm. c) GDPR,</li>
+            <li>plnění právních povinností správce (vyplývajících zejména ze zákona č. 247/2000 Sb., o získávání a zdokonalování odborné způsobilosti k řízení motorových vozidel) podle čl. 6 odst. 1 písm. c) GDPR,</li>
             <li>oprávněný zájem správce na poskytování přímého marketingu (zejména pro zasílání odpovědí a obchodních sdělení) podle čl. 6 odst. 1 písm. f) GDPR,</li>
             <li>Váš souhlas se zpracováním pro účely evidence lékařských posudků podle čl. 9 odst. 2 písm. a) GDPR.</li>
           </ul>
@@ -75,10 +75,10 @@ const OchranaOsobnichUdaju = () => (
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>po dobu nezbytnou k výkonu práv a povinností vyplývajících ze smluvního vztahu mezi Vámi a správcem a uplatňování nároků z těchto smluvních vztahů,</li>
-            <li>po dobu, kterou správci ukládají příslušné zákony pro evidenci a archivaci (zpravidla 5 let u dokumentace z výcviku, pokud zákon nestanoví jinak),</li>
-            <li>po dobu, než je odvolán souhlas se zpracováním osobních údajů, jeli zpracování založeno na souhlasu.</li>
+            <li>po dobu, kterou správci ukládají příslušné zákony pro evidenci a archivaci (zpravidla 5 let u dokumentace z výcviku dle zákona č. 247/2000 Sb., pokud zvláštní předpis nestanoví jinak),</li>
+            <li>po dobu, než je odvolán souhlas se zpracováním osobních údajů, je-li zpracování založeno na souhlasu.</li>
           </ul>
-          <p className="mt-2">Po uplynutí doby uchovávání osobních údajů správce osobní údaje bezpečně vymaže.</p>
+          <p className="mt-2">Po uplynutí doby uchovávání osobních údajů správce osobní údaje bezpečně vymaže nebo anonymizuje.</p>
         </section>
 
         <section>
@@ -87,9 +87,9 @@ const OchranaOsobnichUdaju = () => (
             Příjemci osobních údajů jsou osoby:
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li>podílející se na dododání služeb (instruktoři apod.),</li>
-            <li>státní orgány a zkušební komisaři za účelem přihlášení k závěrečným zkouškám,</li>
-            <li>zajišťující provoz webu a odesílání e-mailů (poskytovatelé hostingových a e-mailingových služeb - např. Supabase, Vercel, Resend).</li>
+            <li>podílející se na dodání služeb (instruktoři, administrativní pracovníci),</li>
+            <li>státní orgány a zkušební komisaři za účelem přihlášení k závěrečným zkouškám a vedení zákonné evidence,</li>
+            <li>zajišťující provoz webu a odesílání e-mailů (poskytovatelé hostingových a e-mailingových služeb – např. Supabase, Vercel, Resend).</li>
           </ul>
           <p className="mt-2">Správce nemá v úmyslu předat osobní údaje do třetí země (mimo EU) nebo mezinárodní organizaci nesplňující podmínky GDPR.</p>
         </section>
@@ -105,13 +105,13 @@ const OchranaOsobnichUdaju = () => (
             <li>právo na přenositelnost údajů dle čl. 20 GDPR,</li>
             <li>právo odvolat souhlas se zpracováním písemně nebo elektronicky na adresu nebo email správce.</li>
           </ul>
-          <p className="mt-2">Dále máte právo podat stížnost u Úřadu pro ochranu osobních údajů v případě, že se domníváte, že bylo porušeno Vaše právo na ochranu osobních údajů.</p>
+          <p className="mt-2">Dále máte právo podat stížnost u Úřadu pro ochranu osobních údajů v případě, že se domníváte, že bylo porušeno Vaše právo na ochranu osobních údajů. Správce neprovádí automatizované individuální rozhodování ani profilování ve smyslu čl. 22 GDPR.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-heading font-bold text-foreground mb-4">VII. Podmínky zabezpečení osobních údajů</h2>
           <p>
-            Správce prohlašuje, že přijal veškerá vhodná technická a organizační opatření k zabezpečení osobních údajů. Veškerá data jsou uchovávána na zabezpečených serverech s odpovídajícím šifrováním. K osobním údajům mají přístup pouze jím pověřené osoby.
+            Správce prohlašuje, že přijal veškerá vhodná technická a organizační opatření k zabezpečení osobních údajů. Veškerá data v elektronické podobě jsou uchovávána na zabezpečených serverech s odpovídajícím šifrováním. K osobním údajům mají přístup pouze jím pověřené osoby.
           </p>
         </section>
 

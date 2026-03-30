@@ -16,7 +16,7 @@ export default async function handler(req: any, res: any) {
 
     // Odeslání notifikace o nahrání potvrzení
     const data = await resend.emails.send({
-      from: `Autoškola Kubáň <${senderEmail}>`,
+      from: `Autoškola Kuboň <${senderEmail}>`,
       to: adminEmail,
       replyTo: email,
       subject: `Lékařské potvrzení - ${name}`,
@@ -35,9 +35,9 @@ export default async function handler(req: any, res: any) {
     // Potvrzení žákovi
     const date = new Date().toLocaleDateString('cs-CZ');
     await resend.emails.send({
-      from: `Autoškola Kubáň <${senderEmail}>`,
+      from: `Autoškola Kuboň <${senderEmail}>`,
       to: email,
-      subject: `Odeslání posudku o zdravotní způsobilosti - Autoškola Kubáň`,
+      subject: `Odeslání posudku o zdravotní způsobilosti - Autoškola Kuboň`,
       html: getLekarskeTemplate(name, file_name, date),
     });
 
