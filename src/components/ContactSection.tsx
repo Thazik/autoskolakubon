@@ -36,7 +36,7 @@ const ContactSection = () => {
     });
     setAppLoading(false);
     if (error) {
-      setAppError("Nepodařilo se odeslat přihlášku. Zkuste to prosím znovu.");
+      setAppError(`Nepodařilo se odeslat přihlášku (DB Error: ${error.message})`);
       return;
     }
     setAppSent(true);
@@ -73,7 +73,7 @@ const ContactSection = () => {
 
     if (uploadError) {
       setMedLoading(false);
-      setMedError("Nepodařilo se nahrát soubor. Zkuste to prosím znovu.");
+      setMedError(`Nepodařilo se nahrát soubor (SupaError: ${uploadError.message})`);
       return;
     }
 
@@ -90,7 +90,7 @@ const ContactSection = () => {
 
     setMedLoading(false);
     if (error) {
-      setMedError("Nepodařilo se odeslat potvrzení. Zkuste to prosím znovu.");
+      setMedError(`Nepodařilo se odeslat (DB Error: ${error.message})`);
       return;
     }
     setMedSent(true);
@@ -328,13 +328,13 @@ const ContactSection = () => {
                   <label className={labelClass}>Soubor</label>
                   <input
                     type="file"
-                    accept=".pdf,.jpg,.jpeg,.png"
+                    accept=".pdf,.jpg,.jpeg,.png,.heic,.webp"
                     required
                     className={inputClass}
                     onChange={e => setMedFile(e.target.files?.[0] || null)}
                   />
                   <p className="text-xs text-muted-foreground mt-1.5">
-                    PDF, JPG nebo PNG (max 10 MB)
+                    PDF, JPG, PNG, WEBP nebo HEIC z telefonu (max 50 MB)
                   </p>
                 </div>
                 <label className="flex items-start gap-3 cursor-pointer select-none">
