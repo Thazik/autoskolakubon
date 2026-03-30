@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Phone } from "lucide-react";
 
 const services = [
   { name: "Doplňková jízda", desc: "Určeno pro studenty naší autoškoly jako doplnění výcviku", price: "600 Kč / 45 min" },
@@ -60,22 +60,44 @@ const ServicesSection = () => {
             <h3 className="font-heading font-bold text-2xl md:text-3xl text-foreground mb-4">
               Dárkový <span className="text-gradient">poukaz</span>
             </h3>
-            <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              Darujte svým blízkým řidičský průkaz! Dárkový poukaz na kurz autoškoly je skvělý dárek k narozeninám, Vánocům nebo jiné příležitosti. Poukaz je platný 12 měsíců od zakoupení.
+            <p className="text-muted-foreground mb-6 max-w-lg mx-auto leading-relaxed">
+              Překvapte své blízké tím nejlepším dárkem. Dárkový poukaz na kurz autoškoly je originální volba k narozeninám, Vánocům nebo jakékoli příležitosti. Poukaz vystavujeme osobně na naší pobočce.
             </p>
             <img
               src="/documents/darkovy-poukaz.png"
               alt="Dárkový poukaz Autoškola Kuboň"
-              className="w-full max-w-md mx-auto rounded-xl border border-blue-subtle mb-6 shadow-blue"
+              className="w-full max-w-md mx-auto rounded-xl border border-blue-subtle mb-8 shadow-blue"
             />
+
+            {/* Info box */}
+            <div className="max-w-md mx-auto p-5 rounded-xl bg-primary/5 border border-primary/15 mb-6 text-left">
+              <p className="text-sm text-foreground font-medium mb-2">Jak poukaz získat?</p>
+              <ul className="text-sm text-muted-foreground space-y-1.5 leading-relaxed">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  Zavolejte nám předem a domluvíme vše potřebné
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  Poukaz vystavíme na místě v naší kanceláři
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-0.5">•</span>
+                  Platnost poukazu je 12 měsíců od zakoupení
+                </li>
+              </ul>
+            </div>
+
             <a
-              href="/documents/darkovy-poukaz.png"
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-heading font-bold text-sm rounded-xl shadow-blue hover:brightness-110 hover:scale-[1.02] transition-all duration-200"
+              href="tel:+420774277865"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-primary-foreground font-heading font-bold text-sm rounded-xl shadow-blue hover:brightness-110 hover:scale-[1.02] transition-all duration-200"
             >
-              <Download className="w-4 h-4" />
-              Stáhnout dárkový poukaz
+              <Phone className="w-4 h-4" />
+              Zavolat a domluvit poukaz
             </a>
+            <p className="text-xs text-muted-foreground mt-3">
+              U Stromovky 9, Havířov · <a href="tel:+420774277865" className="text-primary hover:underline">774 277 865</a>
+            </p>
           </div>
         </motion.div>
       </div>

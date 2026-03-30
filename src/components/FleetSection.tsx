@@ -3,8 +3,8 @@ import car2 from "@/assets/car2.jpg";
 import car3 from "@/assets/car3.jpg";
 
 const cars = [
-  { src: car2, alt: "Autoškola Kuboň – Škoda Fabia", name: "Škoda Fabia" },
-  { src: car3, alt: "Autoškola Kuboň – Škoda Karoq", name: "Škoda Karoq" },
+  { src: car2, alt: "Autoškola Kuboň Škoda Fabia", name: "Škoda Fabia" },
+  { src: car3, alt: "Autoškola Kuboň Škoda Karoq", name: "Škoda Karoq" },
 ];
 
 const FleetSection = () => {

@@ -1,45 +1,110 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Building2, Send, Upload, CalendarDays, Download } from "lucide-react";
+import { Mail, Phone, Building2, Send, Upload, Download, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
 
 const ContactSection = () => {
   const [appForm, setAppForm] = useState({ name: "", email: "", phone: "", course: "B", message: "" });
+  const [appConsent, setAppConsent] = useState(false);
   const [appSent, setAppSent] = useState(false);
-  const [medFile, setMedFile] = useState<File | null>(null);
+  const [appLoading, setAppLoading] = useState(false);
+  const [appError, setAppError] = useState("");
+
   const [medName, setMedName] = useState("");
+  const [medEmail, setMedEmail] = useState("");
+  const [medFile, setMedFile] = useState<File | null>(null);
+  const [medConsent, setMedConsent] = useState(false);
   const [medSent, setMedSent] = useState(false);
-  const [resForm, setResForm] = useState({ name: "", email: "", phone: "", date: "", time: "", type: "kondic" });
-  const [resSent, setResSent] = useState(false);
+  const [medLoading, setMedLoading] = useState(false);
+  const [medError, setMedError] = useState("");
 
-  const handleAppSubmit = (e: React.FormEvent) => {
+  const handleAppSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Přihláška do kurzu – ${appForm.name}`);
-    const body = encodeURIComponent(
-      `Jméno: ${appForm.name}\nEmail: ${appForm.email}\nTelefon: ${appForm.phone}\nKurz: ${appForm.course}\nZpráva: ${appForm.message}`
-    );
-    window.open(`mailto:autoskolakubon@gmail.com?subject=${subject}&body=${body}`);
+    if (!appConsent) {
+      setAppError("Pro odeslání přihlášky musíte souhlasit s podmínkami.");
+      return;
+    }
+    setAppLoading(true);
+    setAppError("");
+    const { error } = await supabase.from("applications").insert({
+      name: appForm.name,
+      email: appForm.email,
+      phone: appForm.phone,
+      course: appForm.course,
+      message: appForm.message || null,
+    });
+    setAppLoading(false);
+    if (error) {
+      setAppError("Nepodařilo se odeslat přihlášku. Zkuste to prosím znovu.");
+      return;
+    }
     setAppSent(true);
+
+    // Odeslat potvrzovací email (na pozadí, nečekáme na výsledek)
+    fetch("/api/send-application-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: appForm.name,
+        email: appForm.email,
+        phone: appForm.phone,
+        course: appForm.course,
+      }),
+    }).catch(() => {});
   };
 
-  const handleMedSubmit = (e: React.FormEvent) => {
+  const handleMedSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Lékařské potvrzení – ${medName}`);
-    const body = encodeURIComponent(
-      `Lékařské potvrzení od: ${medName}\n\nProsím, přiložte soubor k tomuto e-mailu.`
-    );
-    window.open(`mailto:autoskolakubon@gmail.com?subject=${subject}&body=${body}`);
+    if (!medFile) return;
+    if (!medConsent) {
+      setMedError("Pro odeslání potvrzení musíte souhlasit s podmínkami.");
+      return;
+    }
+    setMedLoading(true);
+    setMedError("");
+
+    const ext = medFile.name.split(".").pop();
+    const fileName = `${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("medical-files")
+      .upload(fileName, medFile);
+
+    if (uploadError) {
+      setMedLoading(false);
+      setMedError("Nepodařilo se nahrát soubor. Zkuste to prosím znovu.");
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("medical-files")
+      .getPublicUrl(fileName);
+
+    const { error } = await supabase.from("medical_certificates").insert({
+      name: medName,
+      email: medEmail,
+      file_url: urlData.publicUrl,
+      file_name: medFile.name,
+    });
+
+    setMedLoading(false);
+    if (error) {
+      setMedError("Nepodařilo se odeslat potvrzení. Zkuste to prosím znovu.");
+      return;
+    }
     setMedSent(true);
-  };
 
-  const handleResSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const typeLabel = "Kondiční jízda";
-    const subject = encodeURIComponent(`Rezervace – ${typeLabel} – ${resForm.name}`);
-    const body = encodeURIComponent(
-      `Jméno: ${resForm.name}\nEmail: ${resForm.email}\nTelefon: ${resForm.phone}\nDatum: ${resForm.date}\nČas: ${resForm.time}\nTyp: ${typeLabel}`
-    );
-    window.open(`mailto:autoskolakubon@gmail.com?subject=${subject}&body=${body}`);
-    setResSent(true);
+    // Odeslat potvrzovací email (na pozadí)
+    fetch("/api/send-medical-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: medName,
+        email: medEmail,
+        file_name: medFile.name,
+      }),
+    }).catch(() => {});
   };
 
   const inputClass = "w-full px-4 py-3 rounded-xl bg-section-alt border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/30 font-body text-sm transition-all duration-200";
@@ -74,11 +139,26 @@ const ContactSection = () => {
           <p className="text-muted-foreground text-sm mb-6">
             Navštivte nás v naší kanceláři na adrese U Stromovky 9, Havířov. Mimo uvedené hodiny je možná domluva telefonicky.
           </p>
-          <img
-            src="/images/oteviraci-doba.png"
-            alt="Otevírací doba autoškoly Kuboň"
-            className="mx-auto rounded-xl max-w-md w-full"
-          />
+          <div className="max-w-sm mx-auto text-left">
+            <table className="w-full">
+              <tbody className="divide-y divide-border/30">
+                {[
+                  { day: "Pondělí", hours: "10:00 \u2013 12:00 | 14:30 \u2013 16:00" },
+                  { day: "Úterý", hours: "14:30 \u2013 18:45" },
+                  { day: "Středa", hours: "10:00 \u2013 12:00 | 14:30 \u2013 16:00" },
+                  { day: "Čtvrtek", hours: "14:30 \u2013 18:45" },
+                  { day: "Pátek", hours: "dle domluvy" },
+                  { day: "Sobota", hours: "zavřeno" },
+                  { day: "Neděle", hours: "zavřeno" },
+                ].map((row) => (
+                  <tr key={row.day}>
+                    <td className="py-2.5 pr-4 font-heading font-bold text-sm text-foreground">{row.day}</td>
+                    <td className="py-2.5 text-sm text-muted-foreground text-right">{row.hours}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </motion.div>
 
         {/* Kontaktní info */}
@@ -125,8 +205,8 @@ const ContactSection = () => {
           />
         </div>
 
-        {/* Forms grid */}
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {/* Forms grid – 2 columns */}
+        <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Přihláška */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -153,7 +233,7 @@ const ContactSection = () => {
 
             {appSent ? (
               <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
-                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Odešlete prosím e-mail.</p>
+                <p className="text-primary font-medium text-sm">✓ Přihláška byla úspěšně odeslána. Brzy se vám ozveme.</p>
               </div>
             ) : (
               <form onSubmit={handleAppSubmit} className="space-y-4">
@@ -183,8 +263,28 @@ const ContactSection = () => {
                   <label className={labelClass}>Zpráva</label>
                   <textarea className={inputClass} rows={3} maxLength={1000} value={appForm.message} onChange={e => setAppForm(p => ({...p, message: e.target.value}))} />
                 </div>
-                <button type="submit" className={btnClass}>
-                  <Send className="w-4 h-4" /> Odeslat přihlášku
+                <label className="flex items-start gap-3 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={appConsent}
+                    onChange={e => setAppConsent(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 rounded border-border/50 text-primary focus:ring-primary/40 accent-primary"
+                  />
+                  <span className="text-xs text-muted-foreground leading-relaxed">
+                    Souhlasím s{" "}
+                    <Link to="/obchodni-podminky" target="_blank" className="text-primary hover:underline">
+                      obchodními podmínkami
+                    </Link>{" "}
+                    a{" "}
+                    <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
+                      zásadami ochrany osobních údajů
+                    </Link>.
+                  </span>
+                </label>
+                {appError && <p className="text-red-500 text-sm">{appError}</p>}
+                <button type="submit" disabled={appLoading || !appConsent} className={btnClass}>
+                  {appLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                  Odeslat přihlášku
                 </button>
               </form>
             )}
@@ -216,7 +316,7 @@ const ContactSection = () => {
 
             {medSent ? (
               <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
-                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Připojte prosím soubor a odešlete.</p>
+                <p className="text-primary font-medium text-sm">✓ Lékařské potvrzení bylo úspěšně odesláno.</p>
               </div>
             ) : (
               <form onSubmit={handleMedSubmit} className="space-y-4">
@@ -225,74 +325,44 @@ const ContactSection = () => {
                   <input className={inputClass} required maxLength={100} value={medName} onChange={e => setMedName(e.target.value)} />
                 </div>
                 <div>
-                  <label className={labelClass}>Soubor (připojte v e-mailu)</label>
+                  <label className={labelClass}>Email</label>
+                  <input type="email" className={inputClass} required maxLength={255} value={medEmail} onChange={e => setMedEmail(e.target.value)} />
+                </div>
+                <div>
+                  <label className={labelClass}>Soubor</label>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png"
+                    required
                     className={inputClass}
                     onChange={e => setMedFile(e.target.files?.[0] || null)}
                   />
                   <p className="text-xs text-muted-foreground mt-1.5">
-                    Soubor bude nutné přiložit ručně v otevřeném e-mailovém klientu.
+                    PDF, JPG nebo PNG (max 10 MB)
                   </p>
                 </div>
-                <button type="submit" className={btnClass}>
-                  <Upload className="w-4 h-4" /> Odeslat potvrzení
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Rezervace */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-card rounded-2xl p-8 border border-blue-subtle shadow-blue gradient-border"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center ring-1 ring-primary/10">
-                <CalendarDays className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-heading font-bold text-lg text-foreground">Rezervační systém</h3>
-            </div>
-            {resSent ? (
-              <div className="p-4 rounded-xl bg-primary/5 border border-primary/15">
-                <p className="text-primary font-medium text-sm">✓ E-mailový klient byl otevřen. Odešlete prosím e-mail k potvrzení rezervace.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleResSubmit} className="space-y-4">
-                <div>
-                  <label className={labelClass}>Jméno a příjmení</label>
-                  <input className={inputClass} required maxLength={100} value={resForm.name} onChange={e => setResForm(p => ({...p, name: e.target.value}))} />
-                </div>
-                <div>
-                  <label className={labelClass}>Email</label>
-                  <input type="email" className={inputClass} required maxLength={255} value={resForm.email} onChange={e => setResForm(p => ({...p, email: e.target.value}))} />
-                </div>
-                <div>
-                  <label className={labelClass}>Telefon</label>
-                  <input type="tel" className={inputClass} required maxLength={20} value={resForm.phone} onChange={e => setResForm(p => ({...p, phone: e.target.value}))} />
-                </div>
-                <div>
-                  <label className={labelClass}>Typ</label>
-                  <select className={inputClass} value={resForm.type} onChange={e => setResForm(p => ({...p, type: e.target.value}))}>
-                    <option value="kondic">Kondiční jízda</option>
-                  </select>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className={labelClass}>Datum</label>
-                    <input type="date" className={inputClass} required value={resForm.date} onChange={e => setResForm(p => ({...p, date: e.target.value}))} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Čas</label>
-                    <input type="time" className={inputClass} required value={resForm.time} onChange={e => setResForm(p => ({...p, time: e.target.value}))} />
-                  </div>
-                </div>
-                <button type="submit" className={btnClass}>
-                  <CalendarDays className="w-4 h-4" /> Rezervovat
+                <label className="flex items-start gap-3 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={medConsent}
+                    onChange={e => setMedConsent(e.target.checked)}
+                    className="mt-0.5 w-4 h-4 rounded border-border/50 text-primary focus:ring-primary/40 accent-primary"
+                  />
+                  <span className="text-xs text-muted-foreground leading-relaxed">
+                    Souhlasím s{" "}
+                    <Link to="/obchodni-podminky" target="_blank" className="text-primary hover:underline">
+                      obchodními podmínkami
+                    </Link>{" "}
+                    a{" "}
+                    <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
+                      zásadami ochrany osobních údajů
+                    </Link>.
+                  </span>
+                </label>
+                {medError && <p className="text-red-500 text-sm">{medError}</p>}
+                <button type="submit" disabled={medLoading || !medConsent} className={btnClass}>
+                  {medLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                  Odeslat potvrzení
                 </button>
               </form>
             )}

@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => (
   <footer className="bg-hero relative overflow-hidden">
@@ -53,10 +54,36 @@ const Footer = () => (
       </div>
 
       {/* Bottom */}
-      <div className="pt-6 border-t border-hero-foreground/10 text-center">
-        <p className="text-hero-foreground/30 text-xs">
-          © {new Date().getFullYear()} Autoškola Kuboň. Všechna práva vyhrazena.
-        </p>
+      <div className="pt-6 border-t border-hero-foreground/10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-hero-foreground/30 text-xs">
+            © {new Date().getFullYear()} Autoškola Kuboň. Všechna práva vyhrazena.
+          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/obchodni-podminky"
+              className="text-hero-foreground/30 hover:text-hero-foreground/60 text-xs transition-colors"
+            >
+              Obchodní podmínky
+            </Link>
+            <Link
+              to="/ochrana-soukromi"
+              className="text-hero-foreground/30 hover:text-hero-foreground/60 text-xs transition-colors"
+            >
+              Ochrana soukromí
+            </Link>
+          </div>
+        </div>
+        <div className="flex justify-center mt-4">
+          <Link
+            to="/admin"
+            className="w-8 h-8 flex items-center justify-center rounded-full text-hero-foreground/[0.08] hover:text-hero-foreground/30 hover:bg-hero-foreground/5 text-[10px] transition-all duration-300"
+            aria-label="Administrace"
+            title=""
+          >
+            ●
+          </Link>
+        </div>
       </div>
     </div>
   </footer>
