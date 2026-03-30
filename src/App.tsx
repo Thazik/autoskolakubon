@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Admin from "./pages/Admin.tsx";
-import ObchodniPodminky from "./pages/ObchodniPodminky.tsx";
 import OchranaOsobnichUdaju from "./pages/OchranaOsobnichUdaju.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -20,7 +19,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/obchodni-podminky" element={<ObchodniPodminky />} />
           <Route path="/ochrana-soukromi" element={<OchranaOsobnichUdaju />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

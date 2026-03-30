@@ -61,12 +61,6 @@ const Footer = () => (
           </p>
           <div className="flex items-center gap-4">
             <Link
-              to="/obchodni-podminky"
-              className="text-hero-foreground/30 hover:text-hero-foreground/60 text-xs transition-colors"
-            >
-              Obchodní podmínky
-            </Link>
-            <Link
               to="/ochrana-soukromi"
               className="text-hero-foreground/30 hover:text-hero-foreground/60 text-xs transition-colors"
             >

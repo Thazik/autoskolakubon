@@ -271,13 +271,9 @@ const ContactSection = () => {
                     className="mt-0.5 w-4 h-4 rounded border-border/50 text-primary focus:ring-primary/40 accent-primary"
                   />
                   <span className="text-xs text-muted-foreground leading-relaxed">
-                    Souhlasím s{" "}
-                    <Link to="/obchodni-podminky" target="_blank" className="text-primary hover:underline">
-                      obchodními podmínkami
-                    </Link>{" "}
-                    a{" "}
+                    Souhlasím se{" "}
                     <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
-                      zásadami ochrany osobních údajů
+                      zpracováním osobních údajů
                     </Link>.
                   </span>
                 </label>
@@ -349,13 +345,9 @@ const ContactSection = () => {
                     className="mt-0.5 w-4 h-4 rounded border-border/50 text-primary focus:ring-primary/40 accent-primary"
                   />
                   <span className="text-xs text-muted-foreground leading-relaxed">
-                    Souhlasím s{" "}
-                    <Link to="/obchodni-podminky" target="_blank" className="text-primary hover:underline">
-                      obchodními podmínkami
-                    </Link>{" "}
-                    a{" "}
+                    Souhlasím se{" "}
                     <Link to="/ochrana-soukromi" target="_blank" className="text-primary hover:underline">
-                      zásadami ochrany osobních údajů
+                      zpracováním osobních údajů
                     </Link>.
                   </span>
                 </label>
