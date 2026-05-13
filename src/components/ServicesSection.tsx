@@ -3,9 +3,10 @@ import { Phone } from "lucide-react";
 
 const services = [
   { name: "Doplňková jízda", desc: "Určeno pro studenty naší autoškoly jako doplnění výcviku", price: "600 Kč / 45 min" },
+  { name: "Balíček 4 doplňkových jízd", desc: "Pro studenty naší autoškoly – výhodné zvýhodnění", price: "2 000 Kč" },
   { name: "Kondiční jízda", desc: "Určeno pro držitele řidičského oprávnění", price: "700 Kč / 45 min" },
   { name: "Balíček 4 kondičních jízd", desc: "", price: "2 500 Kč" },
-  { name: "Vrácení řidičského oprávnění", desc: "2× 45 min jízdy", price: "4 500 Kč" },
+  { name: "Vrácení řidičského oprávnění", desc: "Komplexní kurz pro vrácení ŘP", price: "5 000 Kč" },
   { name: "Kurz mentora (L17)", desc: "2× 45 min s instruktorem", price: "1 800 Kč" },
 ];
 

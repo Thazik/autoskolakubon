@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { BookOpen, Car, Globe, MapPin, CheckCircle2 } from "lucide-react";
-import ucebnaImg from "@/assets/ucebna.jpg";
+import ucebnaImg from "@/assets/ucebna-new.jpg";
 
 const TrainingSection = () => {
   return (
@@ -42,7 +42,7 @@ const TrainingSection = () => {
               </p>
             </div>
             <div className="rounded-xl overflow-hidden border border-border/50 mb-4">
-              <img src={ucebnaImg} alt="Budova učebny U Stromovky 9, Havířov" className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" />
+              <img src={ucebnaImg} alt="Interiér učebny Autoškola Kuboň, U Stromovky 9, Havířov" className="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" />
             </div>
             <div className="rounded-xl overflow-hidden border border-border/50">
               <iframe
@@ -75,11 +75,14 @@ const TrainingSection = () => {
 
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               Výcvik začíná na cvičišti určeném pouze pro naši autoškolu a následně pokračuje v běžném provozu.
+              Jezdíme i na dálnici a silnici pro motorová vozidla, nabízíme možnost nočních a víkendových jízd.
             </p>
 
             <div className="space-y-2 mb-4">
               {[
                 { label: "Jízdy ve městech", value: "Havířov, Karviná, Orlová, Č. Těšín, Ostrava" },
+                { label: "Dálnice a silnice pro motorová vozidla", value: "součást výcviku" },
+                { label: "Noční jízdy a víkendy", value: "po individuální domluvě" },
                 { label: "Závěrečné zkoušky", value: "Havířov" },
                 { label: "Místo vyzvednutí", value: "dle individuální dohody" },
                 { label: "Čas jízd", value: "přizpůsobíme vašemu rozvrhu" },

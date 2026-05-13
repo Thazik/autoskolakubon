@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
-import car2 from "@/assets/car2.jpg";
-import car3 from "@/assets/car3.jpg";
+import fleet1 from "@/assets/fleet-1.jpg";
+import fleet2 from "@/assets/fleet-2.jpg";
+import fleet3 from "@/assets/fleet-3.jpg";
+import fleet4 from "@/assets/fleet-4.jpg";
 
 const cars = [
-  { src: car2, alt: "Autoškola Kuboň Škoda Fabia", name: "Škoda Fabia" },
-  { src: car3, alt: "Autoškola Kuboň Škoda Karoq", name: "Škoda Karoq" },
+  { src: fleet1, alt: "Autoškola Kuboň – Škoda Karoq a Škoda Fabia", name: "Škoda Karoq & Fabia" },
+  { src: fleet2, alt: "Autoškola Kuboň – Škoda Fabia a Škoda Karoq", name: "Vozový park" },
+  { src: fleet3, alt: "Autoškola Kuboň – pohled zezadu", name: "Naše vozidla" },
+  { src: fleet4, alt: "Autoškola Kuboň – Škoda Karoq a Fabia", name: "Profesionální vozy" },
 ];
 
 const FleetSection = () => {
@@ -23,11 +27,11 @@ const FleetSection = () => {
             Vozový <span className="text-gradient">park</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Výcvik probíhá na moderních vozidlech značky Škoda
+            Výcvik probíhá na moderních vozidlech značky Škoda – Škoda Fabia a Škoda Karoq
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {cars.map((car, i) => (
             <motion.div
               key={i}
@@ -37,7 +41,7 @@ const FleetSection = () => {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-2xl overflow-hidden border border-blue-subtle shadow-blue group card-hover gradient-border"
             >
-              <div className="aspect-[4/5] overflow-hidden relative">
+              <div className="aspect-[4/3] overflow-hidden relative">
                 <img
                   src={car.src}
                   alt={car.alt}

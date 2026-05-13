@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Car, GraduationCap, Zap, Globe, Sparkles, ArrowRight } from "lucide-react";
+import { Car, GraduationCap, Zap, Globe, Sparkles, ArrowRight, Wallet } from "lucide-react";
 
 const plans = [
   {
@@ -56,6 +56,27 @@ const PricingSection = () => {
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground">
             <span className="text-gradient">Ceník</span>
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+            Kurz lze hradit i ve splátkách po individuální dohodě
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mx-auto mb-10 flex items-center gap-4 p-5 rounded-2xl bg-primary/5 border border-primary/15"
+        >
+          <div className="w-12 h-12 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center ring-1 ring-primary/15">
+            <Wallet className="w-6 h-6 text-primary" />
+          </div>
+          <div>
+            <p className="font-heading font-bold text-foreground">Možnost splátek</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Řidičský průkaz můžete uhradit i v několika splátkách po vzájemné dohodě. Stačí nám napsat nebo zavolat.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
