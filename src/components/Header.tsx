@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Facebook, Instagram } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-kubon.jpg";
+import { hasActiveNews } from "@/lib/news";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -16,6 +17,8 @@ const socials = [
 
 const navItems = [
   { label: "Úvod", href: "#uvod" },
+  // "Aktuality" se přidá jen tehdy, když je aktivní nějaká akce (viz src/lib/news.ts).
+  ...(hasActiveNews() ? [{ label: "Aktuality", href: "#aktuality" }] : []),
   { label: "Vedení a učitelé", href: "#tym" },
   { label: "Výuka", href: "#vyuka" },
   { label: "Vozový park", href: "#vozovy-park" },
